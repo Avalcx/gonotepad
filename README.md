@@ -3,7 +3,7 @@
 https://github.com/pereorga/minimalist-web-notepad
 
 ## 环境变量配置
-默认 PORT 8080 
+默认 PORT 8080
 默认 TYPE 2
 1 持久化为文件
 2 不持久化
