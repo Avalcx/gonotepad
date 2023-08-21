@@ -6,7 +6,10 @@ https://github.com/pereorga/minimalist-web-notepad
 PORT 默认 8080
 TYPE 默认 2  
 1 持久化为文件  
-2 不持久化  
+2 不持久化 
+TIME 默认 20  
+自动清理时间 秒
+ 
 ## 增加2个api接口
 
 ### 查数据
