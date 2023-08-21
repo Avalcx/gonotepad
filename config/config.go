@@ -14,7 +14,7 @@ var CleanTime int
 func SetConfig() {
 	defaultPort := "8080"
 	defaultType := "2"
-	defaultCleanTime := "10"
+	defaultCleanTime := "20"
 
 	GetConfig(defaultPort, defaultType, defaultCleanTime)
 }
