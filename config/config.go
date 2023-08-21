@@ -1,27 +1,30 @@
 package config
 
 import (
+	"strconv"
+
 	"github.com/spf13/viper"
 )
 
 const FileDir = "tmp" + "/"
 
-var Port, Token, TextType string
+var Port, TextType string
+var CleanTime int
 
 func SetConfig() {
 	defaultPort := "8080"
-	defaultToken := "abdas"
 	defaultType := "2"
+	defaultCleanTime := "10"
 
-	GetConfig(defaultPort, defaultToken, defaultType)
+	GetConfig(defaultPort, defaultType, defaultCleanTime)
 }
 
-func GetConfig(port string, token string, texttype string) {
+func GetConfig(port string, textType string, cleanTime string) {
 	viper.SetDefault("PORT", port)
-	viper.SetDefault("TOKEN", token)
-	viper.SetDefault("TYPE", texttype)
+	viper.SetDefault("TYPE", textType)
+	viper.SetDefault("TIME", cleanTime)
 
 	Port = viper.Get("PORT").(string)
-	Token = viper.Get("TOKEN").(string)
-	TextType, _ = viper.Get("TYPE").(string)
+	TextType = viper.Get("TYPE").(string)
+	CleanTime, _ = strconv.Atoi(viper.Get("TIME").(string))
 }

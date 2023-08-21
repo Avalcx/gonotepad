@@ -1,28 +1,30 @@
 package controller
 
 import (
+	"fmt"
 	"notepad/config"
+	"notepad/model"
 	"os"
-	"time"
 )
 
-func Clean(textName string, textType string, sleepTime int) {
-	time.Sleep(time.Duration(sleepTime) * time.Second)
-	switch textType {
+func Clean(textName string) {
+	switch config.TextType {
 	case "1":
 		cleanFile(textName)
-		return
 	case "2":
 		cleanMap(textName)
-		return
 	}
-	return
 }
 
 func cleanFile(textName string) {
-	os.Remove(config.FileDir + textName)
+	filePath := config.FileDir + textName
+	fmt.Println("remove file")
+	err := os.Remove(filePath)
+	if err == nil {
+		return
+	}
 }
 
 func cleanMap(textName string) {
-	delete(textMap, textName)
+	delete(model.TextData, textName)
 }

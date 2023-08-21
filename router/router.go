@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"notepad/config"
 	"notepad/controller"
+	"notepad/model"
 
 	"github.com/gin-gonic/gin"
 )
@@ -37,8 +38,9 @@ func NotePad(r *gin.Engine) {
 			}
 			// query参数为空时，返回html页面
 			c.HTML(http.StatusOK, "index.html", gin.H{
-				"Title":   "Notepad",
-				"Content": text,
+				"Title":     "Notepad",
+				"Content":   text,
+				"CleanTime": config.CleanTime,
 			})
 			// post 时 仅写入
 		} else if method == "POST" {
@@ -64,13 +66,28 @@ func NotePad(r *gin.Engine) {
 					c.JSON(http.StatusForbidden, err.Error())
 					return
 				}
-
 				c.HTML(http.StatusOK, "index.html", gin.H{
 					"Title":   "Notepad",
 					"Content": textForm,
 				})
 			}
-
 		}
+	})
+}
+
+func CleanData(r *gin.Engine) {
+	r.GET("/cleanData", func(c *gin.Context) {
+		textName, ok := c.GetQuery("textName")
+		if ok {
+			ok = model.CleanList[textName]
+			if ok {
+				controller.Clean(textName)
+				c.JSON(http.StatusOK, "clean success")
+			} else {
+				c.JSON(http.StatusOK, "textName is not exist")
+			}
+			return
+		}
+		c.JSON(http.StatusForbidden, "arguments is invaild")
 	})
 }

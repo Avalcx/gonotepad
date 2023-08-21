@@ -3,11 +3,11 @@ package controller
 import (
 	"errors"
 	"notepad/config"
+	"notepad/model"
 	"os"
 )
 
-var textMap = make(map[string]string, 50)
-var TextMap = &textMap
+// var textMap = make(map[string]string, 50)
 
 func Read(textName string, textType string) (string, error) {
 
@@ -29,5 +29,5 @@ func readFile(textName string) (string, error) {
 }
 
 func readMap(textName string) (string, error) {
-	return textMap[textName], nil
+	return model.TextData[textName], nil
 }

@@ -1,5 +1,4 @@
 function uploadContent() {
-
     // If textarea value changes.
     if (content !== textarea.value) {
         var temp = textarea.value;
@@ -12,6 +11,7 @@ function uploadContent() {
                 // Request has ended, check again after 1 second.
                 content = temp;
                 setTimeout(uploadContent, 200);
+                console.log(CleanTime);
             }
         }
         request.onerror = function() {
@@ -30,12 +30,28 @@ function uploadContent() {
     }
 }
 
+function cleanData(){
+    var textName = window.location.pathname
+    textName = textName.slice(1)
+    var request = new XMLHttpRequest();
+    request.open('GET', '/cleanData?textName=' + textName);
+    request.send();
+}    
+
 var textarea = document.getElementById('content');
 var printable = document.getElementById('printable');
 var content = textarea.value;
+var CleanTime = document.getElementById("cleantime").innerHTML; 
+var timer 
 
 // Make the content available to print.
 printable.appendChild(document.createTextNode(content));
-
 textarea.focus();
+
+// add clean
+textarea.addEventListener('input',()=>{
+    clearTimeout(timer)
+    timer = setTimeout(cleanData,10*1000)
+})
+
 uploadContent();
