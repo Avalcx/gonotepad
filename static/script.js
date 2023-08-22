@@ -11,7 +11,6 @@ function uploadContent() {
                 // Request has ended, check again after 1 second.
                 content = temp;
                 setTimeout(uploadContent, 200);
-                console.log(CleanTime);
             }
         }
         request.onerror = function() {

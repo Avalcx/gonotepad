@@ -27,5 +27,5 @@ func main() {
 	router.Jump(r)
 	router.CleanData(r)
 	router.NotePad(r)
-	r.Run("127.0.0.1:" + config.Port)
+	r.Run("0.0.0.0:" + config.Port)
 }
