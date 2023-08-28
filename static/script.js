@@ -50,7 +50,7 @@ textarea.focus();
 // add clean
 textarea.addEventListener('input',()=>{
     clearTimeout(timer)
-    timer = setTimeout(cleanData,10*1000)
+    timer = setTimeout(cleanData,CleanTime)
 })
 
 uploadContent();
