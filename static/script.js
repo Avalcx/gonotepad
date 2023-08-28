@@ -18,6 +18,7 @@ function uploadContent() {
             setTimeout(uploadContent, 1000);
         }
         request.send('text=' + encodeURIComponent(temp));
+        console.log(typeof(parseInt(CleanTime)));
 
         // Make the content available to print.
         printable.removeChild(printable.firstChild);
@@ -50,7 +51,7 @@ textarea.focus();
 // add clean
 textarea.addEventListener('input',()=>{
     clearTimeout(timer)
-    timer = setTimeout(cleanData,CleanTime)
+    timer = setTimeout(cleanData,CleanTime*1000)
 })
 
 uploadContent();
