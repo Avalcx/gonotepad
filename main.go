@@ -25,7 +25,8 @@ func main() {
 	templ := template.Must(template.New("").ParseFS(Static, "static/*.html"))
 	r.SetHTMLTemplate(templ)
 	router.Jump(r)
-	router.CleanData(r)
+
 	router.NotePad(r)
+	router.CleanData(r)
 	r.Run("0.0.0.0:" + config.Port)
 }

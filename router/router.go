@@ -5,6 +5,7 @@ import (
 	"notepad/config"
 	"notepad/controller"
 	"notepad/model"
+	"time"
 
 	"github.com/gin-gonic/gin"
 )
@@ -58,6 +59,11 @@ func NotePad(r *gin.Engine) {
 					return
 				}
 				c.JSON(http.StatusOK, "ok")
+				// 增加
+				go func() {
+					time.Sleep(time.Duration(config.CleanTime) * time.Second)
+					controller.Clean(textName)
+				}()
 				return
 			} else {
 				// query参数为空时，返回html页面
