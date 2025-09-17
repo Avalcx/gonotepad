@@ -6,6 +6,7 @@ import (
 	"io/fs"
 	"net/http"
 	"notepad/config"
+	"notepad/model"
 	"notepad/router"
 
 	"github.com/gin-gonic/gin"
@@ -19,6 +20,7 @@ func init() {
 }
 
 func main() {
+	go model.StartCleaner()
 	r := gin.Default()
 	static, _ := fs.Sub(Static, "static")
 	r.StaticFS("/static", http.FS(static))

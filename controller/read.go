@@ -29,5 +29,6 @@ func readFile(textName string) (string, error) {
 }
 
 func readMap(textName string) (string, error) {
-	return model.TextData[textName], nil
+	text, _ := model.Get(textName)
+	return text, nil
 }

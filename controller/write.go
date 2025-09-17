@@ -30,6 +30,6 @@ func writeFile(textName string, text string) error {
 }
 
 func writeMap(textName string, text string) error {
-	model.TextData[textName] = text
+	model.Set(textName, text)
 	return nil
 }
